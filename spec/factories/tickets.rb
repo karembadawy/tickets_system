@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  due_date    :datetime
+#  progress    :integer          default(0), not null
 #  status      :integer          default("pending"), not null
 #  title       :string           not null
 #  created_at  :datetime         not null
@@ -24,6 +25,7 @@ FactoryBot.define do
     title { FFaker::Job.title }
     description { FFaker::Book.description }
     status { Ticket.statuses[:pending] }
+    progress { 0 }
     user
   end
 end

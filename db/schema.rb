@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_191214) do
     t.bigint "user_id"
     t.datetime "due_date"
     t.integer "status", default: 0, null: false
+    t.integer "progress", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tickets_on_user_id"
@@ -35,7 +36,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_191214) do
     t.string "name", null: false
     t.boolean "send_due_date_reminder", default: true, null: false
     t.integer "due_date_reminder_interval"
-    t.datetime "due_date_reminder_time"
+    t.time "due_date_reminder_time"
     t.string "time_zone", default: "UTC"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

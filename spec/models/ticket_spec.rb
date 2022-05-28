@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  due_date    :datetime
+#  progress    :integer          default(0), not null
 #  status      :integer          default("pending"), not null
 #  title       :string           not null
 #  created_at  :datetime         not null
@@ -26,6 +27,7 @@ RSpec.describe Ticket, type: :model do
     subject { build(:ticket) }
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:progress) }
   end
 
   describe "associations" do
@@ -44,6 +46,12 @@ RSpec.describe Ticket, type: :model do
       user = build(:ticket, status: nil)
       expect(user).to_not be_valid
       expect(user.errors[:status]).to include(I18n.t("errors.messages.blank"))
+    end
+
+    it 'should raise error if progress not exist' do
+      user = build(:ticket, progress: nil)
+      expect(user).to_not be_valid
+      expect(user.errors[:progress]).to include(I18n.t("errors.messages.blank"))
     end
   end
 end

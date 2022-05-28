@@ -4,7 +4,7 @@
 #
 #  id                         :bigint           not null, primary key
 #  due_date_reminder_interval :integer
-#  due_date_reminder_time     :datetime
+#  due_date_reminder_time     :time
 #  email                      :string           default(""), not null
 #  encrypted_password         :string           default(""), not null
 #  name                       :string           not null

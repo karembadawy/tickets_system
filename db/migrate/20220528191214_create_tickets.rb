@@ -6,6 +6,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.datetime :due_date
       t.integer :status, default: 0, null: false
+      t.integer :progress, default: 0, null: false
 
       t.timestamps
     end

@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  description :text
 #  due_date    :datetime
+#  progress    :integer          default(0), not null
 #  status      :integer          default("pending"), not null
 #  title       :string           not null
 #  created_at  :datetime         not null
@@ -29,4 +30,5 @@ class Ticket < ApplicationRecord
   # Validations
   validates :title, presence: true
   validates :status, presence: true
+  validates :progress, presence: true
 end
