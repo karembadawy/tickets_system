@@ -1,0 +1,63 @@
+PreCommit:
+  ALL:
+    problem_on_unmodified_line: ignore
+    on_warn: fail
+    quiet: true
+  RuboCop:
+    enabled: true
+    description: 'Analyze with RuboCop'
+  AuthorEmail:
+    enabled: true
+    description: 'Check author email'
+  AuthorName:
+    enabled: false
+    description: 'Check for author name'
+  RailsBestPractices:
+    enabled: true
+    description: 'Analyze with RailsBestPractices'
+    RemoveUnusedMethodsInControllersCheck: false
+    RemoveUnusedMethodsInModelsCheck: false
+  Brakeman:
+    enabled: true
+    description: 'Analyze with Brakeman'
+  Reek:
+    enabled: false
+    description: 'Analyze with Reek'
+  Flay:
+    enabled: true
+    description: 'Analyze ruby code for structural similarities with Flay'
+    include: '**/*.rb'
+    mass_threshold: 100
+  RailsSchemaUpToDate:
+    enabled: true
+    description: 'Check if database schema is up to date'
+    include:
+      - 'db/migrate/*.rb'
+      - 'db/schema.rb'
+      - 'db/structure.sql'
+  ForbiddenBranches:
+    enabled: false
+    description: 'Prevent merging to staging, master and production branches locally'
+    branch_patterns: ['staging', 'main', 'production']
+CommitMsg:
+  ALL:
+    quiet: true
+    on_warn: fail
+  MessageFormat:
+    enabled: true
+    description: 'Check commit message matches expected pattern'
+    pattern: '(TS\-+[0-9]+.*)|(Merge.*)'
+    expected_pattern_message: 'TS-<Issue Id> <Commit Message Description> Or Merge <Branch ID> to <Branch ID>'
+    sample_message: 'TS-123 Refactor Onboarding flow or Merge branch_name to master'
+
+  TextWidth:
+    enabled: true
+    description: 'Check text width'
+    max_subject_width: 80
+    min_subject_width: 0
+    max_body_width: 72
+PrePush:
+  RSpec:
+    enabled: true
+    command: ['rspec']
+    on_warn: fail
