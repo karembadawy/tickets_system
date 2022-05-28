@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+  database:
+    image: postgres:13
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-15432}:5432"
+    env_file:
+      - .env
+
+  redis:
+    image: redis:6.2.6
+    command: redis-server --appendonly yes
+    volumes:
+      - redisdata:/data
+    ports:
+      - "${REDIS_PORT:-16379}:6379"
+    env_file:
+      - .env
+
+  sidekiq:
+    build:
+      context: .
+      args:
+        - APP_USER_ID=${APP_USER_ID}
+    command: bundle exec sidekiq
+    volumes:
+      - .:/home/tickets_system/app
+      - rails_cache:/home/tickets_system/app/tmp/cache
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    tty: true
+    stdin_open: true
+
+  app:
+    build:
+      context: .
+      args:
+        - APP_USER_ID=${APP_USER_ID}
+    volumes:
+      - .:/home/tickets_system/app
+      - rails_cache:/home/tickets_system/app/tmp/cache
+      - ~/.ssh:/home/tickets_system/.ssh
+      - ~/.gitconfig:/etc/gitconfig
+    tmpfs:
+      - /tmp
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    depends_on:
+      - database
+      - redis
+    tty: true
+    stdin_open: true
+
+volumes:
+  postgresdata: {}
+  redisdata: {}
+  rails_cache: {}
