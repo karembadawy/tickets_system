@@ -12,7 +12,7 @@
 #  reset_password_sent_at     :datetime
 #  reset_password_token       :string
 #  send_due_date_reminder     :boolean          default(TRUE), not null
-#  time_zone                  :string
+#  time_zone                  :string           default("UTC")
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #

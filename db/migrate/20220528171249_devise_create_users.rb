@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :send_due_date_reminder, null: false, default: true
       t.integer :due_date_reminder_interval
       t.datetime :due_date_reminder_time
-      t.string :time_zone
+      t.string :time_zone, default: 'UTC'
 
       t.timestamps null: false
     end
