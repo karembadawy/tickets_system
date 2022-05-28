@@ -81,7 +81,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Centralization of locale data collection for Ruby on Rails.
+gem 'rails-i18n', '~> 5.1', '>= 5.1.3'
 # Devise is a flexible authentication solution for Rails.
 gem 'devise', '~> 4.8', '>= 4.8.1'
+# Localization for devise
+gem 'devise-i18n', '~> 1.10.1'
 # Generic state machine library
 gem 'aasm', '5.2.0'

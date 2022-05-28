@@ -91,6 +91,7 @@
 * Outside the container apply the below commands
 
     ```bash
+    tickets_system rails db:migrate RAILS_ENV=test
     tickets_system rspec spec
     ```
 

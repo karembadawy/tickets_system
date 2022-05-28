@@ -53,3 +53,4 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+.irb-history
