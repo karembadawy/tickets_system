@@ -32,5 +32,6 @@ module TicketsSystem
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.time_zone = 'UTC'
+    config.active_record.default_timezone = :utc
   end
 end

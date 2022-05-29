@@ -26,6 +26,7 @@ class Ticket < ApplicationRecord
 
   # Associations
   belongs_to :user
+  has_many :notifications
 
   # Validations
   validates :title, presence: true

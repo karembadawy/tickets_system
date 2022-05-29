@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :tickets
+  has_many :notifications
 
   # Validations
   validates :email, presence: true, uniqueness: true

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_191214) do
+ActiveRecord::Schema.define(version: 2022_05_29_003348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.integer "type"
+    t.boolean "viewed", default: false
+    t.bigint "user_id"
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_notifications_on_ticket_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.string "title", null: false
@@ -44,5 +57,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_191214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "tickets"
+  add_foreign_key "notifications", "users"
   add_foreign_key "tickets", "users"
 end
